@@ -1,60 +1,51 @@
-:root {
-    --primary: #003366; /* Azul formal */
-    --accent: #28a745;  /* Verde de éxito/dinero */
-    --bg: #f8f9fa;
-    --text: #333;
-}
+/* Importamos la fuente Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    margin: 0;
+    overflow-x: hidden; /* Evita scroll horizontal indeseado */
 }
 
-.hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 60px 20px;
-    text-align: center;
+/* --- ANIMACIÓN DEL FONDO (HERO) --- */
+.hero-animated {
+    background: linear-gradient(-45deg, #003366, #004080, #0059b3, #001a33);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    position: relative;
+    overflow: hidden;
 }
 
-h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
-h1 span { color: var(--accent); }
-
-.card-form {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    max-width: 400px;
-    width: 100%;
-    margin-top: 30px;
+/* Esto hace que los colores del fondo se muevan suavemente */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-input, select {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    box-sizing: border-box;
+/* --- EFECTO DE PARTÍCULAS (OPCIONAL/DECORATIVO) --- */
+.hero-animated::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.1;
+    animation: moveGrid 20s linear infinite;
 }
 
-.btn-main {
-    width: 100%;
-    padding: 15px;
-    background-color: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: 0.3s;
+@keyframes moveGrid {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(50px); }
 }
 
-.btn-main:hover { background-color: #218838; }
+/* --- BOTÓN PULSANTE --- */
+.btn-pulse {
+    animation: pulse-green 2s infinite;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+}
 
-.disclaimer { font-size: 0.8rem; color: #777; margin-top: 15px; }
+@keyframes pulse-green {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
