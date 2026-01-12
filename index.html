@@ -3,87 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intermediario Financiero | Tu Préstamo Ideal</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Préstamos Panamá | Cotiza en un Clic</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-blue-600">FinanExpert</div>
-            <a href="#contacto" class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition">Solicitar Ahora</a>
+    <header class="hero-animated min-h-screen flex items-center justify-center text-white px-4">
+        <div class="text-center max-w-4xl z-10" data-aos="zoom-in" data-aos-duration="1500">
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight drop-shadow-lg">
+                Obtén tu Préstamo <br>
+                <span class="text-green-400">Sin Complicaciones</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl mb-10 font-light text-gray-200 max-w-2xl mx-auto">
+                Aplica y cotiza ya desde todos los bancos desde un solo clic.
+            </p>
+            
+            <a href="#formulario" class="btn-pulse inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-5 px-10 rounded-full text-xl transition-all duration-300 transform hover:-translate-y-1">
+                APLICA YA 🚀
+            </a>
+            
+            <p class="mt-4 text-sm text-gray-300 opacity-80">Respuesta rápida y segura</p>
         </div>
-    </nav>
+    </header>
 
-    <section class="py-16 px-4 text-center bg-gradient-to-b from-blue-50 to-white">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">El préstamo que necesitas, <br><span class="text-blue-600">con las mejores condiciones.</span></h1>
-        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">Conectamos tu perfil con los principales bancos para conseguirte la tasa más baja. Sin papeleo excesivo y con respuesta rápida.</p>
-        <div class="flex flex-col md:flex-row justify-center gap-4">
-            <a href="#contacto" class="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-bold shadow-lg hover:bg-blue-700 transition">Quiero mi estudio gratuito</a>
-        </div>
-    </section>
+    <section id="formulario" class="py-20 px-6 bg-white relative">
+        <div class="max-w-3xl mx-auto">
+            
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-blue-900">Completa tu Solicitud</h2>
+                <p class="text-gray-600 mt-2">Analizaremos tu perfil en minutos.</p>
+            </div>
 
-    <section class="py-16 max-w-6xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12">¿Cómo funciona?</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
-                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600 font-bold text-xl">1</div>
-                <h3 class="font-semibold text-xl mb-2">Completa el formulario</h3>
-                <p class="text-gray-500 text-sm">Solo te tomará 2 minutos. Sin compromisos.</p>
-            </div>
-            <div class="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
-                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600 font-bold text-xl">2</div>
-                <h3 class="font-semibold text-xl mb-2">Analizamos tu perfil</h3>
-                <p class="text-gray-500 text-sm">Buscamos la mejor opción entre múltiples entidades financieras.</p>
-            </div>
-            <div class="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
-                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600 font-bold text-xl">3</div>
-                <h3 class="font-semibold text-xl mb-2">Recibe tu dinero</h3>
-                <p class="text-gray-500 text-sm">Te acompañamos en todo el proceso hasta que tengas el capital.</p>
-            </div>
-        </div>
-    </section>
+            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+                
+                <form action="#" class="space-y-6">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Nombre y Apellido</label>
+                            <input type="text" placeholder="Ej: Juan Pérez" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Cédula</label>
+                            <input type="text" placeholder="Ej: 8-123-4567" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition" required>
+                        </div>
+                    </div>
 
-    <section id="contacto" class="py-16 bg-blue-600">
-        <div class="max-w-xl mx-auto px-4">
-            <div class="bg-white p-8 rounded-3xl shadow-2xl">
-                <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Solicita información hoy</h2>
-                <form action="#" method="POST" class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
-                        <input type="text" placeholder="Ej. Juan Pérez" class="w-full border-gray-300 rounded-lg p-3 border focus:ring-2 focus:ring-blue-500 outline-none" required>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Fecha de Nacimiento</label>
+                            <input type="date" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Número de Teléfono</label>
+                            <input type="tel" placeholder="Ej: 6123-4567" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition" required>
+                        </div>
                     </div>
+
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Monto deseado ($)</label>
-                        <input type="number" placeholder="Ej. 10000" class="w-full border-gray-300 rounded-lg p-3 border focus:ring-2 focus:ring-blue-500 outline-none" required>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Lugar de Trabajo</label>
+                        <select class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition cursor-pointer appearance-none" required>
+                            <option value="" disabled selected>Selecciona una opción...</option>
+                            <option value="meduca">Ministerio de Educación (MEDUCA)</option>
+                            <option value="minseg">Ministerio de Seguridad Pública</option>
+                            <option value="salud">Sector Salud (MINSA / CSS)</option>
+                            <option value="gobierno">Administrativo de Gobierno</option>
+                            <option value="privada">Empresa Privada</option>
+                            <option value="jubilado">Jubilado / Pensionado</option>
+                        </select>
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono de contacto</label>
-                        <input type="tel" placeholder="Ej. +507 0000 0000" class="w-full border-gray-300 rounded-lg p-3 border focus:ring-2 focus:ring-blue-500 outline-none" required>
-                    </div>
-                    <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-xl shadow-lg transition duration-300 uppercase tracking-wide">
-                        Enviar solicitud
+
+                    <button type="submit" class="w-full bg-blue-900 hover:bg-blue-800 text-white font-bold py-4 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 mt-4">
+                        Enviar Solicitud
                     </button>
-                    <p class="text-center text-xs text-gray-400 mt-4 italic text-balance">
-                        🛡️ Tus datos están protegidos y solo se usarán para esta asesoría.
-                    </p>
+                    
+                    <p class="text-xs text-center text-gray-500 mt-4">Tus datos están seguros y encriptados. ✅</p>
+
                 </form>
             </div>
         </div>
     </section>
 
-    <footer class="py-8 bg-gray-900 text-white text-center">
-        <p class="text-sm text-gray-500">© 2026 FinanExpert - Intermediación Bancaria. Todos los derechos reservados.</p>
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+        <p>© 2026 Intermediario Financiero. Todos los derechos reservados.</p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true, // La animación solo ocurre una vez al bajar
+            offset: 100, // Empieza a animar un poco antes de llegar al elemento
+        });
+    </script>
 </body>
 </html>
