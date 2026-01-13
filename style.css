@@ -1,49 +1,47 @@
-/* Importamos la fuente Inter */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+/* ... (Mantén tu código anterior de las fuentes y el body) ... */
 
-body {
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden; /* Evita scroll horizontal indeseado */
-}
-
-/* --- ANIMACIÓN DEL FONDO (HERO) --- */
 .hero-animated {
     background: linear-gradient(-45deg, #003366, #004080, #0059b3, #001a33);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     position: relative;
-    overflow: hidden;
+    /* Damos espacio abajo para que la ola no tape el texto */
+    padding-bottom: 150px; 
 }
 
-/* Esto hace que los colores del fondo se muevan suavemente */
 @keyframes gradientBG {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* --- EFECTO DE PARTÍCULAS (OPCIONAL/DECORATIVO) --- */
-.hero-animated::before {
-    content: "";
+/* --- NUEVA CONEXIÓN DE OLA (WAVE) --- */
+.custom-shape-divider-bottom-1689 {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: radial-gradient(white 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.1;
-    animation: moveGrid 20s linear infinite;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
 }
 
-@keyframes moveGrid {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(50px); }
+.custom-shape-divider-bottom-1689 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
 }
 
-/* --- BOTÓN PULSANTE --- */
+.custom-shape-divider-bottom-1689 .shape-fill {
+    fill: #FFFFFF; /* Mismo color que el fondo del formulario */
+}
+
+/* Botón pulsante (Igual que antes) */
 .btn-pulse {
     animation: pulse-green 2s infinite;
     box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
 }
-
 @keyframes pulse-green {
     0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
     70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
