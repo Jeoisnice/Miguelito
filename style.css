@@ -7,13 +7,12 @@ body {
     overflow-x: hidden;
 }
 
-/* 3. FONDO ANIMADO + DIFUMINADO SUTIL */
+/* 3. FONDO ANIMADO + DIFUMINADO */
 .hero-animated {
     background: linear-gradient(-45deg, #003366, #004080, #0059b3, #001a33);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     position: relative;
-    /* Menos espacio abajo para que no quede un hueco enorme */
     padding-bottom: 80px; 
 }
 
@@ -23,22 +22,19 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* EL DIFUMINADO (Corregido para ser sutil y responsive) */
 .hero-animated::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100px; /* Altura reducida para que sea más sutil */
-    /* Gradiente suave de transparente a blanco */
+    height: 100px;
     background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
-    pointer-events: none; /* Esto permite hacer clic a través del difuminado si fuera necesario */
-    z-index: 1; /* Nivel bajo */
+    pointer-events: none;
+    z-index: 1;
 }
 
-/* 4. REGLA PARA EL ICONO DEL CALENDARIO (IMPORTANTE) */
-/* Esto fuerza a que aparezca el icono del calendario en color oscuro */
+/* 4. REGLA PARA EL ICONO DEL CALENDARIO */
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: block;
     background: transparent;
@@ -51,15 +47,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     right: 0;
     top: 0;
     width: auto;
-    /* Usamos una imagen de icono o el default del navegador con filtro oscuro */
     filter: invert(0.4); 
 }
-/* Aseguramos que el input tenga posición relativa para contener el icono */
 input[type="date"] {
     position: relative;
 }
 
-/* 5. BOTÓN PULSANTE */
+/* 5. BOTÓN PULSANTE (Estado Normal) */
 .btn-pulse {
     animation: pulse-green 2s infinite;
     box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
@@ -69,4 +63,40 @@ input[type="date"] {
     0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
     70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
     100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* --- NUEVO: ESTILOS DEL SPINNER Y CARGA --- */
+
+/* Animación de rotación */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Clase para ocultar elementos */
+.hidden {
+    display: none;
+}
+
+/* Estado deshabilitado del botón */
+.btn-loading {
+    background-color: #9ca3af !important; /* Un gris de Tailwind */
+    cursor: not-allowed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: none !important; /* Quita efectos de movimiento */
+    box-shadow: none !important;
 }
