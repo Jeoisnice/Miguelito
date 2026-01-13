@@ -11,8 +11,8 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <header class="hero-animated min-h-[85vh] flex items-center justify-center text-white px-4 relative">
-        <div class="text-center max-w-4xl z-10" data-aos="zoom-in" data-aos-duration="1500">
+    <header class="hero-animated min-h-[85vh] flex items-center justify-center text-white px-4 relative z-0">
+        <div class="text-center max-w-4xl z-10 pb-20" data-aos="zoom-in" data-aos-duration="1500">
             
             <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight drop-shadow-lg">
                 El Préstamo que Necesitas, <br>
@@ -29,45 +29,45 @@
             
             <p class="mt-4 text-sm text-gray-300 opacity-80">Respuesta rápida y segura</p>
         </div>
-        </header>
+    </header>
 
-    <section id="formulario" class="pb-20 px-6 bg-white relative z-20">
+    <section id="formulario" class="pb-20 px-6 relative z-30">
         <div class="max-w-3xl mx-auto">
             
-            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-100 relative -mt-32" data-aos="fade-up">
+            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-100 relative -mt-24" data-aos="fade-up">
                 
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-bold text-blue-900">Completa tu Solicitud</h2>
-                    <p class="text-gray-600 mt-2">Llena tus datos y un asesor te contactará hoy mismo.</p>
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-extrabold text-blue-900">Completa tu Solicitud</h2>
+                    <p class="text-gray-500 mt-2 font-medium">Llena tus datos y un asesor te contactará hoy mismo.</p>
                 </div>
 
                 <form id="loanForm" action="https://formspree.io/f/xqeekddj" method="POST" class="space-y-6">
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Nombre y Apellido</label>
-                            <input name="nombre" type="text" placeholder="Ej: Juan Pérez" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition" required>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Nombre y Apellido</label>
+                            <input name="nombre" type="text" placeholder="Ej: Juan Pérez" class="w-full p-4 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-gray-900" required>
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Cédula</label>
-                            <input name="cedula" type="text" placeholder="Ej: 8-123-4567" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition" required>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Cédula</label>
+                            <input name="cedula" type="text" placeholder="Ej: 8-123-4567" class="w-full p-4 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-gray-900" required>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="relative">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Fecha de Nacimiento</label>
+                            <input name="fecha_nacimiento" type="date" class="w-full p-4 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-gray-900 cursor-pointer" required>
+                            </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Fecha de Nacimiento</label>
-                            <input name="fecha_nacimiento" type="date" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition" required>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Número de Teléfono</label>
-                            <input name="telefono" type="tel" placeholder="Ej: 6123-4567" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition" required>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Número de Teléfono</label>
+                            <input name="telefono" type="tel" placeholder="Ej: 6123-4567" class="w-full p-4 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-gray-900" required>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Lugar de Trabajo</label>
-                        <select name="lugar_trabajo" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition cursor-pointer bg-white" required>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Lugar de Trabajo</label>
+                        <select name="lugar_trabajo" class="w-full p-4 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition cursor-pointer text-gray-900 bg-white" required>
                             <option value="" disabled selected>Selecciona una opción...</option>
                             <option value="meduca">Ministerio de Educación (MEDUCA)</option>
                             <option value="minseg">Ministerio de Seguridad Pública</option>
@@ -89,7 +89,7 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm relative z-30">
         <p>© 2026 Intermediario Financiero. Todos los derechos reservados.</p>
     </footer>
 
@@ -102,11 +102,22 @@
             // --- VALIDACIÓN DE EDAD (+18) ---
             const dateInput = document.querySelector('input[name="fecha_nacimiento"]');
             const today = new Date();
+            // Calculamos la fecha máxima (hoy hace 18 años)
             const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
             const isoDate = maxDate.toISOString().split('T')[0];
             
+            // 1. Establecemos el límite para que no elijan años recientes
             dateInput.setAttribute("max", isoDate);
             
+            // 2. TRUCO: Establecemos un valor por defecto que sea válido (ej. año 2000)
+            // Esto hace que el calendario se abra en una fecha válida y no tengan que hacer scroll 20 años atrás
+            // Solo se pone si el campo está vacío
+            if(!dateInput.value) {
+                // Opcional: Si quieres que empiece vacío, borra la linea de abajo. 
+                // Pero si quieres facilitarles la vida, descomenta la siguiente línea:
+                // dateInput.value = "1990-01-01"; 
+            }
+
             dateInput.addEventListener('change', function() {
                 if (this.value > isoDate) {
                     alert("Lo sentimos, debes ser mayor de 18 años para aplicar.");
@@ -114,22 +125,20 @@
                 }
             });
 
-            // --- NUEVA VALIDACIÓN ROBUSTA DE TELÉFONO PANAMÁ ---
+            // --- VALIDACIÓN ROBUSTA DE TELÉFONO PANAMÁ ---
             const form = document.getElementById('loanForm');
             form.addEventListener('submit', function(e) {
                 const phoneInput = document.querySelector('input[name="telefono"]');
-                // Limpia el número dejando solo dígitos
                 const phoneVal = phoneInput.value.replace(/\D/g, ''); 
                 
-                // Expresión regular para Panamá:
-                // ^6\d{7}$  -> Empieza con 6 y siguen 7 dígitos (Total 8)
-                // |         -> Ó
-                // ^[23]\d{6}$ -> Empieza con 2 o 3 y siguen 6 dígitos (Total 7)
+                // Regex: 
+                // Celular: Empieza con 6 y tiene 8 dígitos
+                // Fijo: Empieza con 2 o 3 y tiene 7 dígitos
                 const panamaRegex = /^(6\d{7}|[23]\d{6})$/;
 
                 if (!panamaRegex.test(phoneVal)) {
-                    e.preventDefault(); // Detiene el envío
-                    alert("Por favor ingresa un número válido de Panamá.\n\n- Celulares: 8 dígitos (empiezan con 6).\n- Fijos: 7 dígitos (empiezan con 2 o 3).");
+                    e.preventDefault(); 
+                    alert("Por favor ingresa un número válido de Panamá.\n\n- Celulares: 8 dígitos (ej: 61234567).\n- Fijos: 7 dígitos (ej: 2234567).");
                     phoneInput.focus();
                 }
             });
