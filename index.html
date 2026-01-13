@@ -6,9 +6,7 @@
     <title>Préstamos Panamá | Cotiza Rápido</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -31,24 +29,18 @@
             
             <p class="mt-4 text-sm text-gray-300 opacity-80">Respuesta rápida y segura</p>
         </div>
+        </header>
 
-        <div class="custom-shape-divider-bottom-1689">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-            </svg>
-        </div>
-    </header>
-
-    <section id="formulario" class="pb-20 pt-10 px-6 bg-white relative">
+    <section id="formulario" class="pb-20 px-6 bg-white relative z-20">
         <div class="max-w-3xl mx-auto">
             
-            <div class="text-center mb-10" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-blue-900">Empieza tu Trámite</h2>
-                <p class="text-gray-600 mt-2">Llena tus datos y un asesor te contactará hoy mismo.</p>
-            </div>
-
-            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-100 relative -mt-24 z-20" data-aos="fade-up" data-aos-delay="200">
+            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-100 relative -mt-32" data-aos="fade-up">
                 
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-blue-900">Completa tu Solicitud</h2>
+                    <p class="text-gray-600 mt-2">Llena tus datos y un asesor te contactará hoy mismo.</p>
+                </div>
+
                 <form id="loanForm" action="https://formspree.io/f/xqeekddj" method="POST" class="space-y-6">
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -103,24 +95,18 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // 1. Iniciar Animaciones
         AOS.init({ once: true, offset: 50 });
 
-        // 2. Validaciones Técnicas (Edad y Teléfono)
         document.addEventListener("DOMContentLoaded", function() {
             
             // --- VALIDACIÓN DE EDAD (+18) ---
             const dateInput = document.querySelector('input[name="fecha_nacimiento"]');
             const today = new Date();
-            // Restamos 18 años a la fecha actual
             const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-            // Formato ISO para el input
             const isoDate = maxDate.toISOString().split('T')[0];
             
-            // Bloquea fechas futuras en el calendario
             dateInput.setAttribute("max", isoDate);
             
-            // Doble chequeo por si lo escriben manual
             dateInput.addEventListener('change', function() {
                 if (this.value > isoDate) {
                     alert("Lo sentimos, debes ser mayor de 18 años para aplicar.");
@@ -128,17 +114,22 @@
                 }
             });
 
-            // --- VALIDACIÓN DE TELÉFONO PANAMÁ ---
+            // --- NUEVA VALIDACIÓN ROBUSTA DE TELÉFONO PANAMÁ ---
             const form = document.getElementById('loanForm');
             form.addEventListener('submit', function(e) {
                 const phoneInput = document.querySelector('input[name="telefono"]');
-                // Elimina espacios o guiones para contar solo los números
+                // Limpia el número dejando solo dígitos
                 const phoneVal = phoneInput.value.replace(/\D/g, ''); 
                 
-                // Verifica que tenga entre 7 y 8 dígitos (Estándar Panamá)
-                if (phoneVal.length < 7 || phoneVal.length > 8) {
-                    e.preventDefault(); // Cancela el envío
-                    alert("Por favor ingresa un número de teléfono válido (7 u 8 dígitos).");
+                // Expresión regular para Panamá:
+                // ^6\d{7}$  -> Empieza con 6 y siguen 7 dígitos (Total 8)
+                // |         -> Ó
+                // ^[23]\d{6}$ -> Empieza con 2 o 3 y siguen 6 dígitos (Total 7)
+                const panamaRegex = /^(6\d{7}|[23]\d{6})$/;
+
+                if (!panamaRegex.test(phoneVal)) {
+                    e.preventDefault(); // Detiene el envío
+                    alert("Por favor ingresa un número válido de Panamá.\n\n- Celulares: 8 dígitos (empiezan con 6).\n- Fijos: 7 dígitos (empiezan con 2 o 3).");
                     phoneInput.focus();
                 }
             });
