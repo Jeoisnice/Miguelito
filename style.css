@@ -1,21 +1,31 @@
-/* ... (Mantén tu código anterior de las fuentes y el body) ... */
+/* 1. IMPORTACIÓN DE FUENTES */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-.hero-animated {
-    background: linear-gradient(-45deg, #003366, #004080, #0059b3, #001a33);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    position: relative;
-    /* Damos espacio abajo para que la ola no tape el texto */
-    padding-bottom: 150px; 
+/* 2. CONFIGURACIÓN BÁSICA */
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden; /* Evita que aparezca una barra de scroll horizontal */
 }
 
+/* 3. FONDO ANIMADO (HERO SECTION) */
+.hero-animated {
+    /* Gradiente de azules bancarios/serios */
+    background: linear-gradient(-45deg, #003366, #004080, #0059b3, #001a33);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite; /* Duración de 15s para que sea suave */
+    position: relative;
+    padding-bottom: 150px; /* Espacio extra abajo para que la ola no tape el texto */
+}
+
+/* Define cómo se mueve el fondo */
 @keyframes gradientBG {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* --- NUEVA CONEXIÓN DE OLA (WAVE) --- */
+/* 4. EFECTO DE OLA (WAVE DIVIDER) */
+/* Esto crea la curva blanca al final del header */
 .custom-shape-divider-bottom-1689 {
     position: absolute;
     bottom: 0;
@@ -23,27 +33,38 @@
     width: 100%;
     overflow: hidden;
     line-height: 0;
-    transform: rotate(180deg);
+    transform: rotate(180deg); /* Invierte la ola para que parezca valle */
 }
 
 .custom-shape-divider-bottom-1689 svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
-    height: 150px;
+    height: 150px; /* Altura de la ola */
 }
 
 .custom-shape-divider-bottom-1689 .shape-fill {
-    fill: #FFFFFF; /* Mismo color que el fondo del formulario */
+    fill: #FFFFFF; /* Debe ser del mismo color que el fondo de la siguiente sección (blanco) */
 }
 
-/* Botón pulsante (Igual que antes) */
+/* 5. BOTÓN PULSANTE (CTA) */
+/* Efecto de latido para llamar la atención */
 .btn-pulse {
     animation: pulse-green 2s infinite;
     box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
 }
+
 @keyframes pulse-green {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
 }
