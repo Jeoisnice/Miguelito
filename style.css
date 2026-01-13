@@ -4,17 +4,18 @@
 /* 2. CONFIGURACIÓN BÁSICA */
 body {
     font-family: 'Inter', sans-serif;
-    overflow-x: hidden; /* Evita que aparezca una barra de scroll horizontal */
+    overflow-x: hidden;
 }
 
-/* 3. FONDO ANIMADO (HERO SECTION) */
+/* 3. FONDO ANIMADO CON DIFUMINADO (HERO SECTION) */
 .hero-animated {
-    /* Gradiente de azules bancarios/serios */
+    /* Gradiente de azules */
     background: linear-gradient(-45deg, #003366, #004080, #0059b3, #001a33);
     background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite; /* Duración de 15s para que sea suave */
+    animation: gradientBG 15s ease infinite;
     position: relative;
-    padding-bottom: 150px; /* Espacio extra abajo para que la ola no tape el texto */
+    /* Espacio abajo para la transición */
+    padding-bottom: 120px; 
 }
 
 /* Define cómo se mueve el fondo */
@@ -24,47 +25,27 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* 4. EFECTO DE OLA (WAVE DIVIDER) */
-/* Esto crea la curva blanca al final del header */
-.custom-shape-divider-bottom-1689 {
+/* NUEVO: Efecto de difuminado hacia blanco */
+.hero-animated::after {
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg); /* Invierte la ola para que parezca valle */
+    height: 250px; /* Altura del desvanecimiento */
+    /* Gradiente de transparente a blanco sólido */
+    background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+    pointer-events: none; /* Para que no interfiera con clicks */
 }
 
-.custom-shape-divider-bottom-1689 svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 150px; /* Altura de la ola */
-}
-
-.custom-shape-divider-bottom-1689 .shape-fill {
-    fill: #FFFFFF; /* Debe ser del mismo color que el fondo de la siguiente sección (blanco) */
-}
-
-/* 5. BOTÓN PULSANTE (CTA) */
-/* Efecto de latido para llamar la atención */
+/* 4. BOTÓN PULSANTE (CTA) */
 .btn-pulse {
     animation: pulse-green 2s infinite;
     box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
 }
 
 @keyframes pulse-green {
-    0% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-    }
-    70% {
-        transform: scale(1);
-        box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
-    }
-    100% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-    }
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
 }
