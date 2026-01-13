@@ -7,38 +7,59 @@ body {
     overflow-x: hidden;
 }
 
-/* 3. FONDO ANIMADO CON DIFUMINADO (HERO SECTION) */
+/* 3. FONDO ANIMADO + DIFUMINADO SUTIL */
 .hero-animated {
-    /* Gradiente de azules */
     background: linear-gradient(-45deg, #003366, #004080, #0059b3, #001a33);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     position: relative;
-    /* Espacio abajo para la transición */
-    padding-bottom: 120px; 
+    /* Menos espacio abajo para que no quede un hueco enorme */
+    padding-bottom: 80px; 
 }
 
-/* Define cómo se mueve el fondo */
 @keyframes gradientBG {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* NUEVO: Efecto de difuminado hacia blanco */
+/* EL DIFUMINADO (Corregido para ser sutil y responsive) */
 .hero-animated::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 250px; /* Altura del desvanecimiento */
-    /* Gradiente de transparente a blanco sólido */
+    height: 100px; /* Altura reducida para que sea más sutil */
+    /* Gradiente suave de transparente a blanco */
     background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
-    pointer-events: none; /* Para que no interfiera con clicks */
+    pointer-events: none; /* Esto permite hacer clic a través del difuminado si fuera necesario */
+    z-index: 1; /* Nivel bajo */
 }
 
-/* 4. BOTÓN PULSANTE (CTA) */
+/* 4. REGLA PARA EL ICONO DEL CALENDARIO (IMPORTANTE) */
+/* Esto fuerza a que aparezca el icono del calendario en color oscuro */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: block;
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+    /* Usamos una imagen de icono o el default del navegador con filtro oscuro */
+    filter: invert(0.4); 
+}
+/* Aseguramos que el input tenga posición relativa para contener el icono */
+input[type="date"] {
+    position: relative;
+}
+
+/* 5. BOTÓN PULSANTE */
 .btn-pulse {
     animation: pulse-green 2s infinite;
     box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
