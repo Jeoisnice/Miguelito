@@ -46,22 +46,22 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-bold text-gray-700 mb-2">Nombre y Apellido</label>
-                            <input name="nombre" type="text" placeholder="Ej: Juan Pérez" class="w-full p-4 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-gray-900" required>
+                            <input id="nombre" name="nombre" type="text" placeholder="Ej: Juan Pérez" class="w-full p-4 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-gray-900" required>
                         </div>
                         <div>
                             <label class="block text-sm font-bold text-gray-700 mb-2">Cédula</label>
-                            <input name="cedula" type="text" placeholder="Ej: 8-123-4567" class="w-full p-4 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-gray-900" required>
+                            <input id="cedula" name="cedula" type="text" placeholder="Ej: 8-123-4567" class="w-full p-4 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-gray-900" required>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="relative">
                             <label class="block text-sm font-bold text-gray-700 mb-2">Fecha de Nacimiento</label>
-                            <input name="fecha_nacimiento" type="date" class="w-full p-4 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-gray-900 cursor-pointer" required>
-                            </div>
+                            <input id="fecha_nacimiento" name="fecha_nacimiento" type="date" class="w-full p-4 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-gray-900 cursor-pointer" required>
+                        </div>
                         <div>
                             <label class="block text-sm font-bold text-gray-700 mb-2">Número de Teléfono</label>
-                            <input name="telefono" type="tel" placeholder="Ej: 6123-4567" class="w-full p-4 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-gray-900" required>
+                            <input id="telefono" name="telefono" type="tel" placeholder="Ej: 6123-4567" class="w-full p-4 bg-gray-50 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition text-gray-900" required>
                         </div>
                     </div>
 
@@ -78,8 +78,14 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="w-full bg-blue-900 hover:bg-blue-800 text-white font-bold py-4 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 mt-4">
-                        ENVIAR SOLICITUD
+                    <button type="submit" id="btnEnviar" class="w-full bg-blue-900 hover:bg-blue-800 text-white font-bold py-4 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 mt-4 flex justify-center items-center gap-2">
+                        <span id="spinner" class="spinner hidden"></span>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                        </svg>
+                        
+                        <span id="btnTexto">ENVIAR SOLICITUD</span>
                     </button>
                     
                     <p class="text-xs text-center text-gray-500 mt-4">🔒 Tus datos están protegidos y encriptados.</p>
@@ -99,48 +105,60 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             
-            // --- VALIDACIÓN DE EDAD (+18) ---
-            const dateInput = document.querySelector('input[name="fecha_nacimiento"]');
+            // --- 1. CONFIGURACIÓN DEL CALENDARIO ---
+            const dateInput = document.getElementById('fecha_nacimiento');
             const today = new Date();
-            // Calculamos la fecha máxima (hoy hace 18 años)
             const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
             const isoDate = maxDate.toISOString().split('T')[0];
             
-            // 1. Establecemos el límite para que no elijan años recientes
+            // Bloquear fechas menores de 18 años
             dateInput.setAttribute("max", isoDate);
             
-            // 2. TRUCO: Establecemos un valor por defecto que sea válido (ej. año 2000)
-            // Esto hace que el calendario se abra en una fecha válida y no tengan que hacer scroll 20 años atrás
-            // Solo se pone si el campo está vacío
+            // Si el campo está vacío, sugerir año 2000 para facilitar navegación
             if(!dateInput.value) {
-                // Opcional: Si quieres que empiece vacío, borra la linea de abajo. 
-                // Pero si quieres facilitarles la vida, descomenta la siguiente línea:
-                // dateInput.value = "1990-01-01"; 
+               // dateInput.value = "2000-01-01"; // Descomenta esto si quieres que empiece con fecha
             }
 
-            dateInput.addEventListener('change', function() {
-                if (this.value > isoDate) {
-                    alert("Lo sentimos, debes ser mayor de 18 años para aplicar.");
-                    this.value = "";
-                }
-            });
-
-            // --- VALIDACIÓN ROBUSTA DE TELÉFONO PANAMÁ ---
+            // --- 2. LÓGICA DE ENVÍO Y SPINNER ---
             const form = document.getElementById('loanForm');
+            const btn = document.getElementById('btnEnviar');
+            const spinner = document.getElementById('spinner');
+            const btnTexto = document.getElementById('btnTexto');
+
             form.addEventListener('submit', function(e) {
-                const phoneInput = document.querySelector('input[name="telefono"]');
-                const phoneVal = phoneInput.value.replace(/\D/g, ''); 
+                // Prevenimos el envío inmediato para validar primero
+                const phoneInput = document.getElementById('telefono');
+                const fechaInput = document.getElementById('fecha_nacimiento');
                 
-                // Regex: 
-                // Celular: Empieza con 6 y tiene 8 dígitos
-                // Fijo: Empieza con 2 o 3 y tiene 7 dígitos
-                const panamaRegex = /^(6\d{7}|[23]\d{6})$/;
+                // VALIDACIONES
+                
+                // A. Edad
+                if (fechaInput.value > isoDate) {
+                    e.preventDefault();
+                    alert("Lo sentimos, debes ser mayor de 18 años para aplicar.");
+                    return;
+                }
+
+                // B. Teléfono (Regex robusto de Panamá)
+                const phoneVal = phoneInput.value.replace(/\D/g, ''); 
+                const panamaRegex = /^(6\d{7}|[23]\d{6})$/; // Celulares (8 dígitos) o Fijos (7 dígitos)
 
                 if (!panamaRegex.test(phoneVal)) {
-                    e.preventDefault(); 
+                    e.preventDefault();
                     alert("Por favor ingresa un número válido de Panamá.\n\n- Celulares: 8 dígitos (ej: 61234567).\n- Fijos: 7 dígitos (ej: 2234567).");
                     phoneInput.focus();
+                    return;
                 }
+
+                // SI TODO ESTÁ BIEN:
+                // 1. Activamos la animación de carga
+                btn.disabled = true; // Evita doble clic
+                btn.classList.add('btn-loading'); // Pone el botón gris
+                spinner.classList.remove('hidden'); // Muestra el spinner
+                btnTexto.innerText = "PROCESANDO..."; // Cambia el texto
+
+                // 2. El formulario se enviará a Formspree automáticamente después de esto
+                // No necesitamos setTimeout aquí porque Formspree recargará la página o redirigirá
             });
         });
     </script>
