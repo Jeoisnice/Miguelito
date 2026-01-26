@@ -122,9 +122,3 @@ details > summary::-webkit-details-marker {
     position: relative;
     z-index: 20;             /* Hace que se vea encima del fondo */
 }
-
-.logo-img {
-    max-width: 150px;        /* TAMAÑO: Si lo quieres más grande, sube este número */
-    height: auto;            /* Mantiene la forma correcta */
-    display: inline-block;
-}
