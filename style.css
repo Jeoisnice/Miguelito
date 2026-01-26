@@ -1,19 +1,22 @@
 /* 1. IMPORTACIÓN DE FUENTES */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-/* 2. CONFIGURACIÓN BÁSICA */
+/* 2. CONFIGURACIÓN GENERAL */
 body {
     font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Evita que la página se mueva a los lados */
+    margin: 0;
+    padding: 0;
 }
 
-/* 3. FONDO ANIMADO + DIFUMINADO */
+/* 3. FONDO ANIMADO AZUL (HERO) */
 .hero-animated {
     background: linear-gradient(-45deg, #003366, #004080, #0059b3, #001a33);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
-    position: relative;
+    position: relative; /* Clave para controlar lo que va dentro */
     padding-bottom: 80px; 
+    overflow: hidden;   /* Si el logo de fondo es muy grande, lo recorta */
 }
 
 @keyframes gradientBG {
@@ -22,6 +25,7 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+/* Difuminado blanco en la parte inferior para unir con el formulario */
 .hero-animated::after {
     content: '';
     position: absolute;
@@ -31,10 +35,42 @@ body {
     height: 100px;
     background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
     pointer-events: none;
-    z-index: 1;
+    z-index: 5;
 }
 
-/* 4. REGLA PARA EL ICONO DEL CALENDARIO */
+/* 4. NUEVO: LOGO DE FONDO (MARCA DE AGUA) */
+.watermark-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrado perfecto */
+    
+    width: 70%;           /* Tamaño del logo (ajusta este % si quieres) */
+    max-width: 600px;     /* Límite para que no se vea gigante en PC */
+    opacity: 0.15;        /* TRANSPARENCIA: 0.15 es suave. Sube a 0.3 si lo quieres más fuerte */
+    
+    z-index: 0;           /* Se va al fondo de todo */
+    pointer-events: none; /* Permite dar clic al texto a través del logo */
+    
+    /* Si tu logo es azul oscuro y no se ve, descomenta la siguiente línea para volverlo blanco: */
+    /* filter: brightness(0) invert(1); */
+}
+
+/* Asegura que el texto y botones estén ENCIMA del logo */
+.hero-animated .container,
+.hero-animated h1,
+.hero-animated p,
+.hero-animated button {
+    position: relative;
+    z-index: 10;
+}
+
+/* 5. ESTILOS DEL FORMULARIO Y CALENDARIO */
+input[type="date"] {
+    position: relative;
+}
+
+/* Pone el icono del calendario en blanco */
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: block;
     background: transparent;
@@ -47,13 +83,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     right: 0;
     top: 0;
     width: auto;
-    filter: invert(0.4); 
-}
-input[type="date"] {
-    position: relative;
+    filter: invert(1); 
 }
 
-/* 5. BOTÓN PULSANTE (Estado Normal) */
+/* 6. ANIMACIONES DE BOTONES */
 .btn-pulse {
     animation: pulse-green 2s infinite;
     box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
@@ -65,12 +98,7 @@ input[type="date"] {
     100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
 }
 
-/* 6. ESTILOS DEL SPINNER Y CARGA */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
+/* 7. ESTILOS DE CARGA (SPINNER) */
 .spinner {
     width: 20px;
     height: 20px;
@@ -83,8 +111,13 @@ input[type="date"] {
     vertical-align: middle;
 }
 
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .btn-loading {
@@ -95,9 +128,10 @@ input[type="date"] {
     justify-content: center;
     transform: none !important;
     box-shadow: none !important;
+    animation: none !important;
 }
 
-/* 7. ESTILOS NUEVOS PARA FAQ (PREGUNTAS FRECUENTES) */
+/* 8. PREGUNTAS FRECUENTES (FAQ) */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-5px); }
     to { opacity: 1; transform: translateY(0); }
@@ -107,40 +141,10 @@ input[type="date"] {
     animation: fadeIn 0.3s ease-out forwards;
 }
 
-/* Oculta el triángulo feo por defecto */
 details > summary {
     list-style: none;
+    cursor: pointer;
 }
 details > summary::-webkit-details-marker {
     display: none;
-}
-
-/* ESTILOS DEL LOGO */
-.logo-container {
-    text-align: center;      /* Lo centra */
-    padding-top: 30px;       /* Lo baja un poco del techo */
-    position: relative;
-    z-index: 20;             /* Hace que se vea encima del fondo */
-}
-
-/* --- ESTILOS PARA EL LOGO DE FONDO (WATERMARK) --- */
-
-.logo-watermark {
-    position: absolute;       /* Lo libera para flotar */
-    top: 50%;                 /* Lo baja a la mitad */
-    left: 50%;                /* Lo mueve al centro */
-    transform: translate(-50%, -50%); /* Lo centra matemáticamente exacto */
-    
-    width: 80%;               /* TAMAÑO GIGANTE (Ajusta este % si lo quieres más grande o chico) */
-    max-width: 600px;         /* Límite para que no se vea monstruoso en PC */
-    opacity: 0.15;            /* TRANSPARENCIA: 0.1 es muy suave, 0.9 es sólido. Juega con esto. */
-    
-    z-index: 0;               /* Lo manda al fondo (Capa 0) */
-    pointer-events: none;     /* Esto permite dar clic al texto/botones a través del logo */
-}
-
-/* ASEGURAR QUE EL TEXTO ESTÉ ENCIMA */
-.hero-animated .container {
-    position: relative;
-    z-index: 10;              /* Pone el texto en la Capa 10 (Encima del logo) */
 }
