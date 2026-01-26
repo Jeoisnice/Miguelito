@@ -114,3 +114,17 @@ details > summary {
 details > summary::-webkit-details-marker {
     display: none;
 }
+
+/* ESTILOS DEL LOGO */
+.logo-container {
+    text-align: center;      /* Lo centra */
+    padding-top: 30px;       /* Lo baja un poco del techo */
+    position: relative;
+    z-index: 20;             /* Hace que se vea encima del fondo */
+}
+
+.logo-img {
+    max-width: 150px;        /* TAMAÑO: Si lo quieres más grande, sube este número */
+    height: auto;            /* Mantiene la forma correcta */
+    display: inline-block;
+}
