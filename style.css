@@ -122,3 +122,25 @@ details > summary::-webkit-details-marker {
     position: relative;
     z-index: 20;             /* Hace que se vea encima del fondo */
 }
+
+/* --- ESTILOS PARA EL LOGO DE FONDO (WATERMARK) --- */
+
+.logo-watermark {
+    position: absolute;       /* Lo libera para flotar */
+    top: 50%;                 /* Lo baja a la mitad */
+    left: 50%;                /* Lo mueve al centro */
+    transform: translate(-50%, -50%); /* Lo centra matemáticamente exacto */
+    
+    width: 80%;               /* TAMAÑO GIGANTE (Ajusta este % si lo quieres más grande o chico) */
+    max-width: 600px;         /* Límite para que no se vea monstruoso en PC */
+    opacity: 0.15;            /* TRANSPARENCIA: 0.1 es muy suave, 0.9 es sólido. Juega con esto. */
+    
+    z-index: 0;               /* Lo manda al fondo (Capa 0) */
+    pointer-events: none;     /* Esto permite dar clic al texto/botones a través del logo */
+}
+
+/* ASEGURAR QUE EL TEXTO ESTÉ ENCIMA */
+.hero-animated .container {
+    position: relative;
+    z-index: 10;              /* Pone el texto en la Capa 10 (Encima del logo) */
+}
