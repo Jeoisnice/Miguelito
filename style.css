@@ -9,18 +9,18 @@ body {
     padding: 0;
 }
 
-/* 3. FONDO ANIMADO AZUL (HERO) */
+/* --- 3. FONDO ANIMADO AZUL (HERO) --- */
 .hero-animated {
     background: linear-gradient(-45deg, #003366, #004080, #0059b3, #001a33);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     position: relative;
     padding-bottom: 80px; 
-    overflow: hidden; /* IMPORTANTE: Esto evita que el logo gigante estire la página */
-    min-height: 85vh; /* Asegura que cubra buena parte de la pantalla */
+    overflow: hidden;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra el contenido verticalmente */
+    justify-content: center;
 }
 
 @keyframes gradientBG {
@@ -29,17 +29,16 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- AQUÍ ESTÁ EL ARREGLO DEL DIFUMINADO --- */
+/* EL DIFUMINADO INFERIOR (NIEBLA BLANCA) */
 .hero-animated::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    /* Aumenté esto a 200px para que la "niebla" suba más y tape el corte */
-    height: 200px; 
-    /* El degradado empieza antes (60%) para que sea más sólido abajo */
-    background: linear-gradient(to bottom, transparent 0%, #ffffff 60%, #ffffff 100%);
+    height: 150px; /* Altura controlada */
+    /* Degradado ultra suave: Transparente -> Blanco */
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 60%, #ffffff 100%);
     pointer-events: none;
     z-index: 5;
 }
@@ -49,17 +48,18 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Lo centra matemáticamente */
+    transform: translate(-50%, -50%);
     
-    width: 80%;           /* Tamaño grande */
-    max-width: 600px;     /* Tope para PC */
-    opacity: 0.1;         /* TRANSPARENCIA: Muy sutil para que se vea elegante */
+    width: 80%;
+    max-width: 650px;
+    opacity: 0.08;        /* TRANSPARENCIA MUY SUTIL */
     
-    z-index: 0;           /* Se va al fondo */
-    pointer-events: none; /* Permite dar clic al texto a través del logo */
+    z-index: 0;
+    pointer-events: none;
     
-    /* Si quieres probar invirtiendo el color a blanco, quita las barras de la siguiente línea: */
-    /* filter: brightness(0) invert(1); */
+    /* TRUCO: Borra suavemente la parte de abajo del logo */
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
 
 /* Asegura que el texto y botones estén ENCIMA del logo */
@@ -71,12 +71,11 @@ body {
     z-index: 10;
 }
 
-/* 5. ESTILOS DEL FORMULARIO Y CALENDARIO */
+/* 5. ESTILOS DEL FORMULARIO Y CALENDARIO (Se mantienen) */
 input[type="date"] {
     position: relative;
 }
 
-/* Icono del calendario en blanco */
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: block;
     background: transparent;
@@ -92,7 +91,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1); 
 }
 
-/* 6. ANIMACIONES DE BOTONES */
+/* 6. ANIMACIONES DE BOTONES (Se mantienen) */
 .btn-pulse {
     animation: pulse-green 2s infinite;
     box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
