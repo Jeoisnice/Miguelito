@@ -1,3 +1,7 @@
+/* =========================================
+   ESTILOS DEFINITIVOS V4 - BORDES CORREGIDOS
+   ========================================= */
+
 /* 1. IMPORTACIÓN DE FUENTES */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
@@ -21,6 +25,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    z-index: 0;
 }
 
 @keyframes gradientBG {
@@ -29,47 +34,47 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- CORRECCIÓN DE LA NIEBLA (Más nítida y limpia) --- */
+/* --- NIEBLA BAJA (Corta y nítida) --- */
 .hero-animated::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50px; /* Altura reducida para que no se vea como una mancha */
+    height: 50px; 
     background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
     pointer-events: none;
-    z-index: 5;
+    z-index: 5; /* Capa media */
 }
 
-/* 4. LOGO DE FONDO (MARCA DE AGUA) - CONFIGURACIÓN FINAL */
+/* 4. LOGO DE FONDO (MARCA DE AGUA) - CORREGIDO */
 .watermark-logo {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centrado perfecto */
+    transform: translate(-50%, -50%);
     
     width: 80%;
     max-width: 650px;
     
-    /* OPACIDAD SOLICITADA: 0.45 (Se ve bastante) */
+    /* Opacidad solicitada */
     opacity: 0.45; 
     
-    z-index: 0;
+    z-index: 1; /* Al fondo */
     pointer-events: none;
     
-    /* MÁSCARA CIRCULAR: Elimina los bordes rectos y suaviza las esquinas */
-    -webkit-mask-image: radial-gradient(circle, black 40%, transparent 70%);
-    mask-image: radial-gradient(circle, black 40%, transparent 70%);
+    /* --- MÁSCARA RADIAL AGRESIVA --- */
+    /* El negro es visible, el transparente es invisible. */
+    /* Hacemos que se vuelva transparente al 65% del radio para borrar los bordes rectos */
+    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 65%);
+    mask-image: radial-gradient(circle at center, black 30%, transparent 65%);
 }
 
-/* Asegura que el texto y botones estén SIEMPRE ENCIMA del logo */
-.hero-animated .container,
-.hero-animated h1,
-.hero-animated p,
-.hero-animated button {
+/* --- SEGURIDAD TOTAL PARA EL TEXTO (MÓVIL Y PC) --- */
+/* El texto siempre en la capa más alta (100) */
+.hero-animated .container {
     position: relative;
-    z-index: 10;
+    z-index: 100 !important; 
 }
 
 /* 5. ESTILOS DEL FORMULARIO Y CALENDARIO */
@@ -77,7 +82,6 @@ input[type="date"] {
     position: relative;
 }
 
-/* Icono del calendario en blanco */
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: block;
     background: transparent;
