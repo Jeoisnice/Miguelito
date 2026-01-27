@@ -43,7 +43,7 @@ body {
     z-index: 5;
 }
 
-/* 4. LOGO DE FONDO (MARCA DE AGUA) */
+/* 4. LOGO DE FONDO (MARCA DE AGUA) - AJUSTADO */
 .watermark-logo {
     position: absolute;
     top: 50%;
@@ -52,25 +52,18 @@ body {
     
     width: 80%;
     max-width: 650px;
-    opacity: 0.08;        /* TRANSPARENCIA MUY SUTIL */
+    
+    /* --- AQUÍ ESTÁ EL CONTROL DE VISIBILIDAD --- */
+    opacity: 0.25;   /* Antes estaba en 0.25. Si quieres más, pon 0.3 o 0.4 */
+    /* ------------------------------------------- */
     
     z-index: 0;
     pointer-events: none;
     
-    /* TRUCO: Borra suavemente la parte de abajo del logo */
+    /* MÁSCARA: Esto hace que se borre suavemente abajo */
     -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
-
-/* Asegura que el texto y botones estén ENCIMA del logo */
-.hero-animated .container,
-.hero-animated h1,
-.hero-animated p,
-.hero-animated button {
-    position: relative;
-    z-index: 10;
-}
-
 /* 5. ESTILOS DEL FORMULARIO Y CALENDARIO (Se mantienen) */
 input[type="date"] {
     position: relative;
