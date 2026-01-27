@@ -60,7 +60,7 @@ body {
     /* MANTÉN TU OPACIDAD: */
     /* Si te gustó cómo se veía en la foto, déjalo en el número que pusiste. */
     /* Aquí te pongo 0.15 como referencia, pero cámbialo a tu gusto. */
-    opacity: 0.15; 
+    opacity: 0.20; 
     
     z-index: 0;
     pointer-events: none;
