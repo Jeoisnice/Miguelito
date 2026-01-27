@@ -1,3 +1,7 @@
+/* =========================================
+   ESTILOS DEFINITIVOS - FINANCIERA 2026
+   ========================================= */
+
 /* 1. IMPORTACIÓN DE FUENTES */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
@@ -9,7 +13,7 @@ body {
     padding: 0;
 }
 
-/* --- 3. FONDO ANIMADO AZUL (HERO) --- */
+/* 3. FONDO ANIMADO AZUL (HERO) */
 .hero-animated {
     background: linear-gradient(-45deg, #003366, #004080, #0059b3, #001a33);
     background-size: 400% 400%;
@@ -29,43 +33,54 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* NIEBLA BAJA Y DISCRETA */
+/* --- ARREGLO DE NIEBLA Y MÓVIL --- */
 .hero-animated::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    
-    /* ALTURA PEQUEÑA: Antes era 150px, ahora 50px para que no estorbe */
-    height: 50px; 
-    
-    /* DEGRADADO RÁPIDO: De transparente a blanco puro */
+    height: 50px; /* Niebla baja y limpia */
     background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
-    
     pointer-events: none;
-    z-index: 5;
+    z-index: 1; /* CAPA BAJA: Para que no tape el texto */
 }
 
-/* 4. LOGO DE FONDO (MARCA DE AGUA) - VERSIÓN FINAL */
+/* 4. LOGO DE FONDO (MARCA DE AGUA) */
 .watermark-logo {
-    /* ... (deja el resto igual: position, top, width, etc) ... */
-
-    /* AJUSTE DE COLOR: Vuelve el logo blanco puro */
-    filter: brightness(0) invert(1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     
-    /* AJUSTE DE OPACIDAD: Al ser blanco, brillará más, así que bájalo más */
-    opacity: 0.5;  /* Prueba con 0.05 o 0.08 */
+    width: 80%;
+    max-width: 650px;
     
-    /* MÁSCARA (Déjala igual) */
-    -webkit-mask-image: radial-gradient(circle, black 30%, transparent 70%);
-    mask-image: radial-gradient(circle, black 30%, transparent 70%);
+    /* TU CONFIGURACIÓN PERSONALIZADA */
+    opacity: 0.45; 
+    
+    z-index: 0; /* AL FONDO DE TODO */
+    pointer-events: none;
+    
+    /* Máscara circular para eliminar bordes cuadrados */
+    -webkit-mask-image: radial-gradient(circle, black 40%, transparent 70%);
+    mask-image: radial-gradient(circle, black 40%, transparent 70%);
 }
-/* 5. ESTILOS DEL FORMULARIO Y CALENDARIO (Se mantienen) */
+
+/* --- SEGURIDAD ANTI-ERRORES MÓVILES --- */
+/* Esta regla fuerza a que TODO el contenido (texto, tarjetas, botones)
+   esté siempre por encima de la niebla y el logo. */
+.hero-animated > *:not(.watermark-logo):not(::after) {
+    position: relative;
+    z-index: 20; 
+}
+
+/* 5. ESTILOS DEL FORMULARIO Y CALENDARIO */
 input[type="date"] {
     position: relative;
 }
 
+/* Icono del calendario en blanco */
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: block;
     background: transparent;
@@ -81,7 +96,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1); 
 }
 
-/* 6. ANIMACIONES DE BOTONES (Se mantienen) */
+/* 6. ANIMACIONES DE BOTONES */
 .btn-pulse {
     animation: pulse-green 2s infinite;
     box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
