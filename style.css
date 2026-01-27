@@ -4,7 +4,7 @@
 /* 2. CONFIGURACIÓN GENERAL */
 body {
     font-family: 'Inter', sans-serif;
-    overflow-x: hidden; /* Evita que la página se mueva a los lados */
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
 }
@@ -14,9 +14,13 @@ body {
     background: linear-gradient(-45deg, #003366, #004080, #0059b3, #001a33);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
-    position: relative; /* Clave para controlar lo que va dentro */
+    position: relative;
     padding-bottom: 80px; 
-    overflow: hidden;   /* Si el logo de fondo es muy grande, lo recorta */
+    overflow: hidden; /* IMPORTANTE: Esto evita que el logo gigante estire la página */
+    min-height: 85vh; /* Asegura que cubra buena parte de la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
 }
 
 @keyframes gradientBG {
@@ -25,34 +29,36 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* Difuminado blanco en la parte inferior para unir con el formulario */
+/* --- AQUÍ ESTÁ EL ARREGLO DEL DIFUMINADO --- */
 .hero-animated::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100px;
-    background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+    /* Aumenté esto a 200px para que la "niebla" suba más y tape el corte */
+    height: 200px; 
+    /* El degradado empieza antes (60%) para que sea más sólido abajo */
+    background: linear-gradient(to bottom, transparent 0%, #ffffff 60%, #ffffff 100%);
     pointer-events: none;
     z-index: 5;
 }
 
-/* 4. NUEVO: LOGO DE FONDO (MARCA DE AGUA) */
+/* 4. LOGO DE FONDO (MARCA DE AGUA) */
 .watermark-logo {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centrado perfecto */
+    transform: translate(-50%, -50%); /* Lo centra matemáticamente */
     
-    width: 70%;           /* Tamaño del logo (ajusta este % si quieres) */
-    max-width: 600px;     /* Límite para que no se vea gigante en PC */
-    opacity: 0.15;        /* TRANSPARENCIA: 0.15 es suave. Sube a 0.3 si lo quieres más fuerte */
+    width: 80%;           /* Tamaño grande */
+    max-width: 600px;     /* Tope para PC */
+    opacity: 0.1;         /* TRANSPARENCIA: Muy sutil para que se vea elegante */
     
-    z-index: 0;           /* Se va al fondo de todo */
+    z-index: 0;           /* Se va al fondo */
     pointer-events: none; /* Permite dar clic al texto a través del logo */
     
-    /* Si tu logo es azul oscuro y no se ve, descomenta la siguiente línea para volverlo blanco: */
+    /* Si quieres probar invirtiendo el color a blanco, quita las barras de la siguiente línea: */
     /* filter: brightness(0) invert(1); */
 }
 
@@ -70,7 +76,7 @@ input[type="date"] {
     position: relative;
 }
 
-/* Pone el icono del calendario en blanco */
+/* Icono del calendario en blanco */
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: block;
     background: transparent;
