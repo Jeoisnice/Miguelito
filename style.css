@@ -1,5 +1,5 @@
 /* =========================================
-   ESTILOS DEFINITIVOS V4 - BORDES CORREGIDOS
+   ESTILOS DEFINITIVOS - SIN BORDES NI ERRORES
    ========================================= */
 
 /* 1. IMPORTACIÓN DE FUENTES */
@@ -25,7 +25,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    z-index: 0;
+    /* Contexto de apilamiento base */
+    z-index: 0; 
 }
 
 @keyframes gradientBG {
@@ -34,44 +35,47 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- NIEBLA BAJA (Corta y nítida) --- */
+/* --- NIEBLA BAJA (Para suavizar el corte inferior) --- */
 .hero-animated::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50px; 
+    height: 60px; /* Pequeña y sutil */
     background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
     pointer-events: none;
-    z-index: 5; /* Capa media */
+    z-index: 2; /* Encima del logo, debajo del texto */
 }
 
-/* 4. LOGO DE FONDO (MARCA DE AGUA) - CORREGIDO */
+/* 4. LOGO DE FONDO - ARREGLO DE BORDES RECTOS */
 .watermark-logo {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     
-    width: 80%;
-    max-width: 650px;
+    /* Ajustamos el tamaño para asegurarnos que la máscara funcione */
+    width: 85%;
+    max-width: 700px;
     
-    /* Opacidad solicitada */
+    /* TU OPACIDAD (Se ve bien en 0.45) */
     opacity: 0.45; 
     
-    z-index: 1; /* Al fondo */
+    z-index: 1; /* Fondo (encima del color azul, debajo de la niebla y texto) */
     pointer-events: none;
     
-    /* --- MÁSCARA RADIAL AGRESIVA --- */
-    /* El negro es visible, el transparente es invisible. */
-    /* Hacemos que se vuelva transparente al 65% del radio para borrar los bordes rectos */
-    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 65%);
-    mask-image: radial-gradient(circle at center, black 30%, transparent 65%);
+    /* --- EL SECRETO: MÁSCARA RADIAL SUAVE --- */
+    /* Esto hace que el logo se desvanezca suavemente hacia los lados */
+    /* antes de tocar el borde "cuadrado" de la imagen real. */
+    /* Del centro (0%) al 40% se ve perfecto. Del 40% al 70% desaparece. */
+    -webkit-mask-image: radial-gradient(circle closest-side, black 40%, transparent 85%);
+    mask-image: radial-gradient(circle closest-side, black 40%, transparent 85%);
 }
 
-/* --- SEGURIDAD TOTAL PARA EL TEXTO (MÓVIL Y PC) --- */
-/* El texto siempre en la capa más alta (100) */
+/* --- SEGURIDAD Z-INDEX (CRÍTICO PARA MÓVIL) --- */
+/* Esto fuerza a que TODO el contenido (Títulos, Botones, Tarjeta Feria) */
+/* flote muy por encima del logo, para que no se vea "lavado" ni tapado. */
 .hero-animated .container {
     position: relative;
     z-index: 100 !important; 
