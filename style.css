@@ -1,5 +1,5 @@
 /* =========================================
-   ESTILOS DEFINITIVOS - FINANCIERA 2026
+   ESTILOS DEFINITIVOS V3 - SIN MARCOS
    ========================================= */
 
 /* 1. IMPORTACIÓN DE FUENTES */
@@ -25,6 +25,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    z-index: 0; /* Base */
 }
 
 @keyframes gradientBG {
@@ -33,20 +34,20 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* --- ARREGLO DE NIEBLA Y MÓVIL --- */
+/* --- ARREGLO DE NIEBLA (Corta y nítida) --- */
 .hero-animated::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50px; /* Niebla baja y limpia */
+    height: 50px; 
     background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
     pointer-events: none;
-    z-index: 1; /* CAPA BAJA: Para que no tape el texto */
+    z-index: 2; /* Capa intermedia */
 }
 
-/* 4. LOGO DE FONDO (MARCA DE AGUA) */
+/* 4. LOGO DE FONDO (MARCA DE AGUA) - EL TRUCO FINAL */
 .watermark-logo {
     position: absolute;
     top: 50%;
@@ -56,23 +57,26 @@ body {
     width: 80%;
     max-width: 650px;
     
-    /* TU CONFIGURACIÓN PERSONALIZADA */
+    /* Opacidad que pediste */
     opacity: 0.45; 
     
-    z-index: 0; /* AL FONDO DE TODO */
+    z-index: 1; /* Al fondo, pero sobre el color base */
     pointer-events: none;
+
+    /* --- EL TRUCO MÁGICO PARA QUITAR BORDES --- */
+    /* 'multiply' hace que el fondo blanco/claro de la imagen desaparezca */
+    mix-blend-mode: multiply;
     
-    /* Máscara circular para eliminar bordes cuadrados */
-    -webkit-mask-image: radial-gradient(circle, black 40%, transparent 70%);
-    mask-image: radial-gradient(circle, black 40%, transparent 70%);
+    /* Mantenemos la máscara circular por si acaso */
+    -webkit-mask-image: radial-gradient(circle, black 40%, transparent 80%);
+    mask-image: radial-gradient(circle, black 40%, transparent 80%);
 }
 
-/* --- SEGURIDAD ANTI-ERRORES MÓVILES --- */
-/* Esta regla fuerza a que TODO el contenido (texto, tarjetas, botones)
-   esté siempre por encima de la niebla y el logo. */
-.hero-animated > *:not(.watermark-logo):not(::after) {
+/* --- SEGURIDAD TOTAL PARA EL TEXTO (MÓVIL Y PC) --- */
+/* Esto fuerza a que el contenido importante esté SIEMPRE en la capa más alta (100) */
+.hero-animated .container {
     position: relative;
-    z-index: 20; 
+    z-index: 100 !important; 
 }
 
 /* 5. ESTILOS DEL FORMULARIO Y CALENDARIO */
@@ -80,7 +84,6 @@ input[type="date"] {
     position: relative;
 }
 
-/* Icono del calendario en blanco */
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: block;
     background: transparent;
