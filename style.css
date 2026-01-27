@@ -49,25 +49,15 @@ body {
 
 /* 4. LOGO DE FONDO (MARCA DE AGUA) - VERSIÓN FINAL */
 .watermark-logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    /* ... (deja el resto igual: position, top, width, etc) ... */
+
+    /* AJUSTE DE COLOR: Vuelve el logo blanco puro */
+    filter: brightness(0) invert(1);
     
-    width: 80%;           
-    max-width: 650px;
+    /* AJUSTE DE OPACIDAD: Al ser blanco, brillará más, así que bájalo más */
+    opacity: 0.5;  /* Prueba con 0.05 o 0.08 */
     
-    /* MANTÉN TU OPACIDAD: */
-    /* Si te gustó cómo se veía en la foto, déjalo en el número que pusiste. */
-    /* Aquí te pongo 0.15 como referencia, pero cámbialo a tu gusto. */
-    opacity: 0.45; 
-    
-    z-index: 0;
-    pointer-events: none;
-    
-    /* EL TRUCO NUEVO: MÁSCARA CIRCULAR (Vignette) */
-    /* Esto hace un círculo invisible: El centro (30%) se ve bien, 
-       y del 30% al 70% se va borrando suavemente hacia afuera en TODAS direcciones */
+    /* MÁSCARA (Déjala igual) */
     -webkit-mask-image: radial-gradient(circle, black 30%, transparent 70%);
     mask-image: radial-gradient(circle, black 30%, transparent 70%);
 }
