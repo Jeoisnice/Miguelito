@@ -1,5 +1,5 @@
 /* =========================================
-   ESTILOS FINALES - SOLUCIÓN DE BORDES
+   ESTILOS DEFINITIVOS - SOLUCIÓN BORDES LATERALES
    ========================================= */
 
 /* 1. IMPORTACIÓN DE FUENTES */
@@ -34,28 +34,27 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* NIEBLA BAJA (Para que no se vea el corte inferior) */
+/* NIEBLA BAJA (Suaviza el corte con el fondo blanco) */
 .hero-animated::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50px; 
+    height: 60px;
     background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
     pointer-events: none;
     z-index: 2; 
 }
 
-/* 4. LOGO DE FONDO - ARREGLO NUCLEAR DE BORDES */
+/* 4. LOGO DE FONDO - ARREGLO DE BORDES LATERALES */
 .watermark-logo {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     
-    /* Hacemos la imagen un poco más grande para compensar el recorte */
-    width: 100%; 
+    width: 90%; /* Un poco más ancho para que el recorte sea suave */
     max-width: 800px;
     
     opacity: 0.45; 
@@ -63,12 +62,12 @@ body {
     z-index: 1; 
     pointer-events: none;
     
-    /* --- AQUÍ ESTÁ EL ARREGLO DEFINITIVO --- */
-    /* Hacemos que el logo sea transparente al 65% de su tamaño. */
-    /* Esto garantiza que el 35% exterior de la imagen sea invisible. */
-    /* Así JAMÁS se verán los bordes del archivo. */
-    -webkit-mask-image: radial-gradient(circle, black 30%, transparent 65%);
-    mask-image: radial-gradient(circle, black 30%, transparent 65%);
+    /* --- EL ARREGLO FINAL --- */
+    /* Usamos un degradado HORIZONTAL (de izquierda a derecha). */
+    /* Los primeros y últimos 15% de la imagen se vuelven transparentes. */
+    /* Esto elimina físicamente las líneas rectas de los lados. */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
 }
 
 /* --- SEGURIDAD PARA QUE EL TEXTO NUNCA SE TAPE --- */
