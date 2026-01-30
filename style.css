@@ -1,5 +1,5 @@
 /* =========================================
-   ESTILOS DEFINITIVOS - SOLUCIÓN BORDES LATERALES
+   ESTILOS DEFINITIVOS - CON ESPACIADO PERFECTO
    ========================================= */
 
 /* 1. IMPORTACIÓN DE FUENTES */
@@ -11,6 +11,8 @@ body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
+    /* Espacio para la barra fija superior */
+    padding-top: 70px; 
 }
 
 /* 3. FONDO ANIMADO AZUL (HERO) */
@@ -21,7 +23,7 @@ body {
     position: relative;
     padding-bottom: 80px; 
     overflow: hidden;
-    min-height: 85vh;
+    min-height: 90vh; /* Un poco más alto para dar aire */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -34,7 +36,7 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* NIEBLA BAJA (Suaviza el corte con el fondo blanco) */
+/* NIEBLA BAJA */
 .hero-animated::after {
     content: '';
     position: absolute;
@@ -47,10 +49,17 @@ body {
     z-index: 2; 
 }
 
-/* 4. LOGO DE FONDO (Marca de Agua) */
-/* Lo ocultamos completamente para no saturar el diseño */
+/* 4. LOGO DE FONDO (OCULTO) */
 .watermark-logo {
     display: none !important;
+}
+
+/* 4.5 ARREGLO DE ESPACIADO (NUEVO) */
+/* Esto separa el título de la barra superior */
+.hero-animated .container {
+    position: relative;
+    z-index: 100 !important;
+    padding-top: 80px; /* AQUÍ ESTÁ EL AIRE QUE NECESITABAS */
 }
 
 /* 5. ESTILOS DEL FORMULARIO Y CALENDARIO */
@@ -135,25 +144,17 @@ details > summary {
 details > summary::-webkit-details-marker {
     display: none;
 }
-/* =========================================
-   ESTILOS NUEVOS - HEADER Y LOGO NEÓN
-   ========================================= */
 
-/* Esto selecciona específicamente la imagen (Logo.png) 
-   que está dentro de la etiqueta <header> */
+/* =========================================
+   ESTILOS DE HEADER Y LOGO NEÓN
+   ========================================= */
 header img {
-    /* Aplicamos dos capas de sombra blanca para un efecto neón intenso:
-       1. Una capa cerrada y brillante (5px)
-       2. Una capa más amplia y suave (15px con transparencia) */
     filter: drop-shadow(0 0 5px #ffffff) drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
-    
-    /* Una pequeña transición suave por si pasa el mouse por encima en el futuro */
     transition: all 0.3s ease;
 }
 
-/* (Opcional) Un pequeño efecto extra al pasar el mouse: que brille más */
 header img:hover {
     filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
-    transform: scale(1.05); /* Crece un poquito */
+    transform: scale(1.05); 
     cursor: pointer;
 }
