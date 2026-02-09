@@ -196,3 +196,12 @@ header img:hover {
     20% { left: 150%; } /* Cruza rápido */
     100% { left: 150%; } /* Espera un rato antes de volver a cruzar */
 }
+/* --- MEJORA 3: TEXTO CON DEGRADADO --- */
+/* Busca el título grande verde y le da un toque premium */
+.hero-animated h1 span.text-green-400, 
+.text-green-500 {
+    background: linear-gradient(to right, #4ade80, #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Hace transparente la letra para ver el fondo */
+    text-shadow: 0px 2px 10px rgba(74, 222, 128, 0.3); /* Un brillito verde detrás */
+}
